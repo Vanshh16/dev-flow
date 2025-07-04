@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Flow — Full-Stack App Generation with AI Agents
 
-## Getting Started
+**Flow** is a modern full-stack platform that turns simple prompts into fully functional web applications. Leveraging **programmable AI agents** powered by **Inngest**, it integrates OpenAI, Docker, and secure cloud sandboxes (E2B) to orchestrate code generation, background task execution, authentication, billing, and full development lifecycles with Git.
 
-First, run the development server:
+---
+
+## Tech Stack
+
+- **Frontend**: Next.js, Tailwind CSS, ShadCN
+- **Backend**: tRPC, Inngest, Prisma ORM
+- **Database**: PrismaPostgres
+- **Authentication & Billing**: Clerk
+- **Execution Environment**: E2B cloud sandboxes + Docker templating
+- **AI Models**: OpenAI
+- **DevOps**: Git, Docker, Inngest agent runners
+
+---
+
+## Key Features
+
+- **AI Agent App Builder**  
+  Generate complete full-stack apps using natural language prompts.
+
+- **Inngest Agent Toolkit**  
+  Define programmable background jobs and triggers using Inngest.
+
+- **Clerk Auth + Billing**  
+  Seamlessly manage users, sessions, plans, and usage-based billing.
+
+- **Type-Safe Full Stack with tRPC**  
+  Ensure type safety across client and server.
+
+- **Docker-based Sandbox Execution**  
+  Run code securely in isolated cloud containers using E2B.
+
+- **Live Preview + Code Explorer**  
+  Instantly preview deployed projects via unique URLs and inspect source files.
+
+- **Credit System & Usage Tracking**  
+  Monitor resource consumption and stay on top of your plan.
+
+
+---
+
+## Project Structure
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+src/
+├── middleware.ts                  # Clerk middleware for route protection
+├── prompt.ts                      # Prompt processing or schema
+├── app/                           # App Router root
+│   ├── error.tsx                  # Global error boundary
+│   ├── globals.css                # Tailwind + global styles
+│   ├── layout.tsx                 # Root layout
+│   ├── (home)/                    # Landing/homepage group
+│   │   ├── layout.tsx             # Layout for home
+│   │   ├── page.tsx               # Landing page
+│   │   └── pricing/               # Pricing section
+│   ├── api/                       # API routes
+│   │   ├── inngest/               # Inngest webhook handler
+│   │   └── trpc/[trpc]/           # tRPC handler
+│   ├── projects/[projectId]/      # Project-specific views & previews
+│   ├── sign-in/[[...sign-in]]/    # Clerk sign-in routes
+│   └── sign-up/[[...sign-in]]/    # Clerk sign-up routes
+├── inngest/                       # Inngest agent functions & jobs
+├── lib/                           # Utility functions, DB, helper clients
+├── modules/                       # Feature-based module separation
+│   ├── home/                      # Home page UI logic
+│   ├── messages/                  # Chat or LLM messages module
+│   ├── projects/                  # Project generation + preview logic
+│   └── usage/                     # Usage and billing dashboard logic
+└── trpc/
+    └── routers/                   # Modular tRPC route definitions
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

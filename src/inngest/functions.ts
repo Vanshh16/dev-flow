@@ -1,6 +1,6 @@
 import { inngest } from "./client";
 import { Sandbox } from "@e2b/code-interpreter";
-import { createAgent, createNetwork, createState, createTool, Message, openai, Tool } from '@inngest/agent-kit';
+import { createAgent, createNetwork, createState, createTool, Message, openai, Tool, gemini } from '@inngest/agent-kit';
 import { generateFragmentTitle, generateResponse, getSandbox, lastAssistantTextMessageContent } from "./utils";
 import { z } from "zod";
 import { FRAGMENT_TITLE_PROMPT, PROMPT, RESPONSE_PROMPT } from "@/prompt";
@@ -188,8 +188,8 @@ export const codeAgentFunction = inngest.createFunction(
       name: "fragment-title-generator",
       description: "A fragment title generator",
       system: FRAGMENT_TITLE_PROMPT,
-      model: openai({
-        model: "gpt-4o",
+      model: gemini({
+        model: "gemini-2.0-flash",
       }),
     });
 
@@ -197,8 +197,8 @@ export const codeAgentFunction = inngest.createFunction(
       name: "response-generator",
       description: "A response generator",
       system: RESPONSE_PROMPT,
-      model: openai({
-        model: "gpt-4o",
+      model: gemini({
+        model: "gemini-2.0-flash",
       }),
     });
 
